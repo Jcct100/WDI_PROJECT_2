@@ -36,4 +36,24 @@ router.route('/foodbanks/:id')
 router.route('/foodbanks/:id/edit')
   .get(foodbanks.edit);
 
+//delete
+router.route('/logout')
+  .get(sessions.delete);
+
+router.route('/films/:id')
+  .get(foodbanks.show)
+  .put(secureRoute, foodbanks.update)
+  .delete(secureRoute, foodbanks.delete);
+
+function secureRoute(req, res, next) {
+  if (!req.session.userId) {
+    return req.session.regenerate(() => {
+      req.flash('danger', 'You must be logged in.');
+      res.redirect('/login');
+    });
+  }
+
+  return next();
+}
+
 module.exports = router;

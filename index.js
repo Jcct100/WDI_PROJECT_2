@@ -1,26 +1,23 @@
 //SETTING UP SERVER:
-
-//WE NEED TO REQUIRE OUR DEPENDENCIES which we install before
 const express        = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const router         = require('./config/routes');
 const morgan         = require('morgan');
 const mongoose       = require('mongoose');
 mongoose.promise     = require('bluebird');
-const port           = process.env.PORT || 3000;
 const app            = express();
 const methodOverride = require('method-override');
 const bodyParser     = require('body-parser');
+const session        = require('express-session');
+const { port, databaseURL, secret } = require('./config/environment');
+const User = require('./models/user');
+const flash = require('express-flash');
 
-const databaseURL = 'mongodb://localhost/foodbank-database';
-mongoose.connect(databaseURL, { useMongoClient: true} );
+mongoose.connect(databaseURL, { useMongoClient: true } );
 
-
-//add settings such as which view engine we are going to use or where to find out views
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
 
-//add middleware: which is stuff that is going to happened between the request and the response being sent back
 app.use(morgan('dev'));
 app.use(expressLayouts);
 app.use(express.static(`${__dirname}/public`));
@@ -32,9 +29,33 @@ app.use(methodOverride((req) => {
     return method;
   }
 }));
+app.use(session({
+  secret: secret,
+  resave: false,
+  saveUninitialized: false
+}));
 
-//this but be placed last.
+app.use((req, res, next) => {
+  if (!req.session.userId) return next();
+
+  User
+    .findById(req.session.userId)
+    .exec()
+    .then(user=> {
+      if (!user) {
+        return req.session.regenerate(() => {
+          req.flash('danger', 'You must be logged in.');
+          res.redirect('/');
+        });
+      }
+      req.session.userId = user._id;
+      res.locals.user = user;
+      res.locals.isAuthenticated = true;
+      next();
+    });
+});
+
+app.use(flash());
 app.use(router);
 
-//specify the port
 app.listen(port, () => console.log('express is running'));

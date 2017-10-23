@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const Foodbank = require('../models/foodbank');
 
-// const dbURL = process.env.MONGODB_URI ||
-// 'mongodb://localhost/foodbank-database';
-// mongoose.connect(dbURL);
-
 const dbURL = 'mongodb://localhost/foodbank-database';
 mongoose.connect(dbURL);
 
