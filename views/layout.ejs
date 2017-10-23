@@ -11,12 +11,14 @@
   <script src="/js/app.js" charset="utf-8"></script>
 </head>
 <body>
+  <header>
+    <% include ./partials/_navbar %>
+  </header>
   <% for (const type in messages) { %>
-    <p class="alert alert-<%= type %>"><%= messages[type] %></p>
-    <% } %>
-    <header>
-      <% include ./partials/_navbar %>
-    </header>
-    <%- body %>
+    <p class="alert alert-<%= type %> text-center">
+      <%= messages[type] %>
+    </p>
+  <% } %>
+  <%- body %>
   </body>
   </html>

@@ -28,22 +28,17 @@ router.route('/foodbanks/new')
 
 //show
 router.route('/foodbanks/:id')
-  .get(foodbanks.show)
-  .put(foodbanks.update)
-  .delete(foodbanks.delete);
+  .get(secureRoute, foodbanks.show)
+  .put(secureRoute, foodbanks.update)
+  .delete(secureRoute, foodbanks.delete);
 
 //edit
 router.route('/foodbanks/:id/edit')
-  .get(foodbanks.edit);
+  .get(secureRoute, foodbanks.edit);
 
 //delete
 router.route('/logout')
   .get(sessions.delete);
-
-router.route('/films/:id')
-  .get(foodbanks.show)
-  .put(secureRoute, foodbanks.update)
-  .delete(secureRoute, foodbanks.delete);
 
 function secureRoute(req, res, next) {
   if (!req.session.userId) {
