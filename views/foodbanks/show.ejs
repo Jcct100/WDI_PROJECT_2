@@ -1,0 +1,13 @@
+<h1>Show</h1>
+
+<h3><%= foodbank.name    %></h3>
+<h4><%= foodbank.address %></h4>
+<p><%=  foodbank.phone   %></p>
+<p><%=  foodbank.email   %></p>
+<p><%=  foodbank.website %></p>
+<a class="btn btn-primary" href="/foodbanks/<%= foodbank.id %>/edit">Edit</a>
+
+<form action="/foodbanks/<%= foodbank.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn btn-danger">Delete</button>
+</form>

@@ -1,0 +1,37 @@
+<h1>Edit</h1>
+
+<form action="/foodbanks/<%= foodbank.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" type="text"
+    name="name" value="<% foodbank.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input class="form-control" type="text"
+    name="address" value="<% foodbank.address %>">
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input class="form-control" type="text"
+    name="phone" value="<% foodbank.phone %>">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" type="text"
+    name="email" value="<% foodbank.email %>">
+  </div>
+
+  <div class="form-group">
+    <label for="website">Website</label>
+    <input class="form-control" type="text"
+    name="website" value="<% foodbank.website %>">
+  </div>
+
+  <input class="btn btn-success" type="submit" value="Update details">
+</form>
