@@ -38,8 +38,11 @@ router.route('/foodbanks/:id/edit')
 
 //post comment and delete comment
 router.route('/foodbanks/:id/comments')
-  .post(secureRoute, foodbanks.createComment)
+  .post(secureRoute, foodbanks.createComment);
+
+router.route('/foodbanks/:id/comments/:commentId')
   .delete(secureRoute, foodbanks.deleteComment);
+
 
 //delete
 router.route('/logout')

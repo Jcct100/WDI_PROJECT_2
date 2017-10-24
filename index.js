@@ -12,6 +12,7 @@ const session        = require('express-session');
 const { port, databaseURL, secret } = require('./config/environment');
 const User = require('./models/user');
 const flash = require('express-flash');
+const authentication = require('./lib/authentication');
 
 mongoose.connect(databaseURL, { useMongoClient: true } );
 
@@ -34,28 +35,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
-app.use((req, res, next) => {
-  if (!req.session.userId) return next();
-
-  User
-    .findById(req.session.userId)
-    .exec()
-    .then(user=> {
-      if (!user) {
-        return req.session.regenerate(() => {
-          req.flash('danger', 'You must be logged in.');
-          res.redirect('/');
-        });
-      }
-      req.session.userId = user._id;
-      res.locals.user = user;
-      res.locals.isAuthenticated = true;
-      next();
-    });
-});
-
 app.use(flash());
+
+app.use(authentication);
 app.use(router);
 
 app.listen(port, () => console.log('express is running'));

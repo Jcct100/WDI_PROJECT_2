@@ -6,13 +6,28 @@
   <p><%=  foodbank.email   %></p>
   <p><%=  foodbank.website %></p>
   <a class="btn btn-primary" href="/foodbanks/<%= foodbank.id %>/edit">Edit</a>
+  <form method="POST" action="/foodbanks/<%= foodbank.id %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <% if(locals.isAuthenticated && foodbank.belongsTo(user)) { %>
+  <button class="button alert">Delete</button>
+  <% } %>
+  </form>
+
 
   <section>
     <h4>Comments</h4>
     <% foodbank.comments.forEach((comment) => { %>
-      <p><%= comment.content %></p>
+      <p><%= comment.createdBy.username %> - <%= comment.content %></p>
+      <form method="POST" action="/foodbanks/<%= foodbank.id %>/comments/<%= comment.id %>">
+      <input type="hidden" name="_method" value="DELETE">
+      <% if(locals.isAuthenticated && foodbank.belongsTo(user)) { %>
+      <button class="button alert">Delete</button>
+      <% } %>
+      </form>
     <% }) %>
   </section>
+
+
 
   <% if(locals.isAuthenticated) { %>
   <section>

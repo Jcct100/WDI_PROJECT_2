@@ -34,10 +34,15 @@ function foodbanksShow(req, res) {
 }
 
 function foodbanksCreate(req, res) {
+  req.body.createdBy = req.user;
+  
   Foodbank
     .create(req.body)
     .then(() => {
       res.redirect('/foodbanks');
+    })
+    .catch(err => {
+      res.status(500).render('error', { error: err });
     });
 }
 
@@ -94,18 +99,26 @@ function foodbanksDelete(req, res) {
 }
 
 function createCommentRoute(req, res, next) {
+  console.log('inside createCommentRoute');
   Foodbank
     .findById(req.params.id)
     .exec()
     .then(foodbank => {
       if (!foodbank) return res.notFound();
+      console.log('foodbank found', foodbank);
 
       req.body.createdBy = req.user;
       foodbank.comments.push(req.body);
-
-      return foodbank.save();
+      console.log(req.body);
+      console.log('foodbank comments', foodbank.comments);
+      return foodbank.save((err) => {
+        console.log('ERROR', err);
+      });
     })
-    .then(() => res.redirect(`/foodbanks/${req.params.id}`))
+    .then(() => {
+      console.log('INSIDE THEN');
+      res.redirect(`/foodbanks/${req.params.id}`);
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') res.badRequest(`/foodbanks/${req.params.id}`, err.toString());
       next(err);

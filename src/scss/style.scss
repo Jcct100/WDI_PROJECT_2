@@ -1,11 +1,30 @@
 
 .backgroundimage {
   background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
+  background-size:cover;
+  height: 100%;
+  width: 100%;
+  opacity: 0.7;
 }
 
 .navbar {
   background-color: grey;
   font-size:20px;
+}
+
+
+.colorbackgroundforsigninpage {
+  background-color: grey;
+}
+
+.colorbackgroundforregisterpage {
+  background-color: grey;
+}
+
+.logo {
+  text-align: center;
+}
+
+p {
+  text-align: center;
 }

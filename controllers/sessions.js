@@ -13,6 +13,7 @@ function sessionsCreate(req, res) {
       }
       req.flash('success', `${user.username}, you've logged in!`);
       req.session.userId = user._id;
+      req.session.isAuthenticated = true;
 
       res.redirect('/');
     });

@@ -2,11 +2,13 @@
   <h1>Find your nearest Food Bank</h1>
   <ul>
     <% foodbanks.forEach(foodbank => { %>
-      <li>
-        <h4><%= foodbank.name %></h4>
-        <p><%= foodbank.address %></p>
-        <a href="/foodbanks/<%= foodbank._id %>">More Details</a>
-      </li>
+      <div class="row align-items-center">
+        <div class="col">
+          <h4><%= foodbank.name %></h4>
+          <p><%= foodbank.address %></p>
+          <a href="/foodbanks/<%= foodbank._id %>">More Details</a>
+        </div>
+      </div>
     <% }) %>
   </ul>
 </div>
