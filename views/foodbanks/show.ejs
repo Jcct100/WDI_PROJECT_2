@@ -1,42 +1,41 @@
-<div class="container">
 
-  <h1><%= foodbank.name    %></h1>
-  <h4><%= foodbank.address %></h4>
-  <p><%=  foodbank.phone   %></p>
-  <p><%=  foodbank.email   %></p>
-  <p><%=  foodbank.website %></p>
-  <a class="btn btn-primary" href="/foodbanks/<%= foodbank.id %>/edit">Edit</a>
-  <form method="POST" action="/foodbanks/<%= foodbank.id %>">
-  <input type="hidden" name="_method" value="DELETE">
-  <% if(locals.isAuthenticated && foodbank.belongsTo(user)) { %>
-  <button class="button alert">Delete</button>
-  <% } %>
-  </form>
-
-
-  <section>
-    <h4>Comments</h4>
-    <% foodbank.comments.forEach((comment) => { %>
-      <p><%= comment.createdBy.username %> - <%= comment.content %></p>
-      <form method="POST" action="/foodbanks/<%= foodbank.id %>/comments/<%= comment.id %>">
-      <input type="hidden" name="_method" value="DELETE">
-      <% if(locals.isAuthenticated && foodbank.belongsTo(user)) { %>
-      <button class="button alert">Delete</button>
-      <% } %>
-      </form>
-    <% }) %>
-  </section>
-
-
-
-  <% if(locals.isAuthenticated) { %>
-  <section>
-    <h4>Leave a comment</h4>
-    <form method="POST" action="/foodbanks/<%= foodbank.id %>/comments">
-      <textarea name="content" id="content" placeholder="Comment" required maxlength="255"></textarea>
-      <button class="button">Leave a comment</button>
-    </form>
-  </section>
-  <% } %>
-
+      <div class="container">
+      <div class="row">
+        <div class="col-lg-6 left">
+          <h1><%= foodbank.name    %></h1>
+          <% if(locals.isAuthenticated && foodbank.belongsTo(user)) { %>
+            <a class="btn btn-primary" href="/foodbanks/<%= foodbank.id %>/edit">Edit</a>
+            <form method="POST" action="/foodbanks/<%= foodbank.id %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="button alert">Delete</button>
+            <% } %>
+            </form>
+            <% if(locals.isAuthenticated) { %>
+            <section>
+              <form method="POST" action="/foodbanks/<%= foodbank.id %>/comments">
+                <textarea name="content" id="content" placeholder="Comment" required maxlength="250"></textarea>
+                <button class="button">Leave a comment</button>
+              </form>
+            </section>
+            <% } %>
+            <div class="form">
+              <% foodbank.comments.forEach((comment) => { %>
+                <p><%= comment.createdBy.username %> - <%= comment.content %></p>
+                <form method="POST" action="/foodbanks/<%= foodbank.id %>/comments/<%= comment.id %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <% if(locals.isAuthenticated && foodbank.belongsTo(user)) { %>
+                <button class="button alert">Delete</button>
+                <% } %>
+                </form>
+              <% }) %>
+            </div>
+        </div>
+        <div class="col-lg-6 right">
+          <h4><%= foodbank.address %></h4>
+          <p><%=  foodbank.phone   %></p>
+          <p><%=  foodbank.email   %></p>
+          <p><%=  foodbank.website %></p>
+        </div>
+      </div>
+    </div>
 </div>
