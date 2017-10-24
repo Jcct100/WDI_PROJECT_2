@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const Foodbank = require('../models/foodbank');
 const User = require('../models/user');
-const { dbURL } = require('../config/environment');
+const { databaseURL } = require('../config/environment');
 
-mongoose.connect(dbURL);
+mongoose.connect(databaseURL);
 
 Foodbank.collection.drop();
 User.collection.drop();
