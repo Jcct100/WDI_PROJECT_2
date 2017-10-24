@@ -36,6 +36,11 @@ router.route('/foodbanks/:id')
 router.route('/foodbanks/:id/edit')
   .get(secureRoute, foodbanks.edit);
 
+//post comment and delete comment
+router.route('/foodbanks/:id/comments')
+  .post(secureRoute, foodbanks.createComment)
+  .delete(secureRoute, foodbanks.deleteComment);
+
 //delete
 router.route('/logout')
   .get(sessions.delete);

@@ -3,6 +3,7 @@ const Foodbank = require('../models/foodbank');
 function foodbanksIndex(req, res) {
   Foodbank
     .find()
+    .populate('createdBy')
     .exec()
     .then(foodbanks => {
       res.render( 'foodbanks/index',{ foodbanks });
@@ -20,6 +21,7 @@ function foodbanksNew(req, res) {
 function foodbanksShow(req, res) {
   Foodbank
     .findById(req.params.id)
+    .populate('createdBy comments.createdBy')
     .exec()
     .then(foodbank => {
       if (!foodbank) return res.status(404).render('error', {
@@ -91,6 +93,53 @@ function foodbanksDelete(req, res) {
     });
 }
 
+function createCommentRoute(req, res, next) {
+  Foodbank
+    .findById(req.params.id)
+    .exec()
+    .then(foodbank => {
+      if (!foodbank) return res.notFound();
+
+      req.body.createdBy = req.user;
+      foodbank.comments.push(req.body);
+
+      return foodbank.save();
+    })
+    .then(() => res.redirect(`/foodbanks/${req.params.id}`))
+    .catch((err) => {
+      if (err.name === 'ValidationError') res.badRequest(`/foodbanks/${req.params.id}`, err.toString());
+      next(err);
+    });
+}
+
+function deleteCommentRoute(req, res, next) {
+  Foodbank
+    .findById(req.params.id)
+    .exec()
+    .then(foodbank => {
+      if (!foodbank) return res.notFound();
+      if (!foodbank.belongsTo(req.user)) return res.unauthorized('You do not have permission to delete that resource');
+      foodbank.comments.id(req.params.commentId).remove();
+
+      return foodbank.save();
+    })
+    .then(foodbank => res.redirect(`/foodbanks/${foodbank.id}`))
+    .catch(next);
+}
+
+function createRoute(req, res, next) {
+
+  req.body.createdBy = req.user;
+
+  Foodbank
+    .create(req.body)
+    .then(() => res.redirect('/foodbanks'))
+    .catch((err) => {
+      if(err.name === 'ValidationError') return res.badRequest(`/foodbanks/${req.params.id}/edit`, err.toString());
+      next(err);
+    });
+}
+
 module.exports = {
   index: foodbanksIndex,
   show: foodbanksShow,
@@ -98,5 +147,8 @@ module.exports = {
   create: foodbanksCreate,
   edit: foodbanksEdit,
   update: foodbanksUpdate,
-  delete: foodbanksDelete
+  delete: foodbanksDelete,
+  createRoute: createRoute,
+  createComment: createCommentRoute,
+  deleteComment: deleteCommentRoute
 };
