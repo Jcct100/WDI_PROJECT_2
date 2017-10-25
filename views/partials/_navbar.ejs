@@ -14,11 +14,14 @@
           <li class="nav-item">
             <a class="nav-link" href="/foodbanks/new">Become a partner</a>
           </li>
+          <% } %>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+        <% if (locals.isAuthenticated) { %>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
         <% } else { %>
-          <ul class="nav navbar-nav navbar-right">
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
           </li>
@@ -27,6 +30,6 @@
           </li>
         <% } %>
       </ul>
-    </div>
   </div>
+</div>
 </nav>

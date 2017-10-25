@@ -21,6 +21,7 @@ const foodbankSchema = new mongoose.Schema({
   phone: String,
   email: String,
   website: String,
+  image: String,
   comments: [ commentSchema ],
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 });

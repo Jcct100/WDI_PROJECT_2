@@ -3,10 +3,15 @@
     <div class="row">
     <% foodbanks.forEach(foodbank => { %>
         <div class="col-lg-4 foodbanks-index">
-          <div class="foodbanks-single">
-            <h4><%= foodbank.name %></h4>
-            <p><%= foodbank.address %></p>
-            <a href="/foodbanks/<%= foodbank._id %>">More Details</a>
+
+          <div class="foodbanks-single" style="background-image: url('<%=foodbank.image %>')">
+          <div class="shader">
+          <div class="textfoodbank">
+              <h4><%= foodbank.name %></h4>
+              <p><%= foodbank.address %></p>
+              <a href="/foodbanks/<%= foodbank._id %>">More Details</a>
+          </div>
+          </div>
           </div>
         </div>
     <% }) %>

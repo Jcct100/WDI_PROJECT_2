@@ -26,6 +26,7 @@ User
         phone: '01708397484',
         email: 'info@rainham.foodbank.org.uk',
         website: 'www.rainham.foodbank.org.uk',
+        image: '/image/image1.jpg',
         createdBy: users[0],
         comments: {
           createdBy: users[0],
@@ -37,6 +38,7 @@ User
         phone: '07798 872 573',
         email: 'info@swanleydistrict.foodbank.org.uk',
         website: 'www.swanleydistrict.foodbank.org.uk/',
+        image: '/image/image2.jpg',
         createdBy: users[0],
         comments: {
           createdBy: users[0],
@@ -48,6 +50,7 @@ User
         phone: '020 8595 0122 OR 07983431070',
         email: 'info@dagenham.foodbank.org.uk',
         website: 'www.dagenham.foodbank.org.uk',
+        image: '/image/image3.jpg',
         createdBy: users[0],
         comments: {
           createdBy: users[0],
@@ -59,6 +62,7 @@ User
         phone: '07932 431 350',
         email: 'info@bexley.foodbank.org.uk',
         website: 'www.bexley.foodbank.org.uk',
+        image: '/image/image4.jpg',
         createdBy: users[0],
         comments: {
           createdBy: users[0],
@@ -70,6 +74,7 @@ User
         phone: '07940 089643',
         email: 'graveshamfoodbank@gmail.com',
         website: 'www.gravesham.foodbank.org.uk',
+        image: '/image/image4.jpg',
         createdBy: users[0],
         comments: {
           createdBy: users[0],
@@ -81,6 +86,7 @@ User
         phone: '07771 830549',
         email: 'contact@greenwichfoodbank.co.uk',
         website: 'www.greenwich.foodbank.org.uk/',
+        image: '/image/image1.jpg',
         createdBy: users[0],
         comments: {
           createdBy: users[0],
