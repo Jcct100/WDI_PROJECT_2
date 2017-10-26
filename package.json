@@ -5,7 +5,7 @@
   "repository": "git@github.com:Jcct100/WDI_PROJECT_2.git",
   "author": "Jcct100 <jamestang_@outlook.com>",
   "license": "MIT",
-    "script": {
+    "scripts": {
       "postinstall": "gulp deploy"
     }
   ,"dependencies": {
