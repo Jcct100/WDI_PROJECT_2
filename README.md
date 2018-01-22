@@ -12,7 +12,7 @@ Our second project was to build a full-stack RESTFUL application that includes a
 
 Food Share is the name of my website. It is a directory of Food Banks in the UK. You can edit, delete, show and comment on the website. You have to register as a user in order to access some of the web pages and features such as adding comment to a post. Only the user created the foodbank can see the option to delete and edit their own post.
 
-The inspiration of my idea comes from the time I was working at Citizen Advice Bureau as a Social Welfare Advisor where I often found people coming to us for information to go to their nearest food banks.
+The inspiration of my idea comes from the time I was working at Citizen Advice Bureau as a Social Welfare Advisor where I often found people coming to us to direct them to nearest food banks.
 
 ###  Libraries/Applications used:
 
