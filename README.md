@@ -12,6 +12,8 @@ Our second project was to build a full-stack RESTFUL application that includes a
 
 Food Share is the name of my website. It is a directory of Food Banks in the UK. You can edit, delete, show and comment on the website. You have to register as a user in order to access some of the web pages and features such as adding comment to a post. Only the user created the foodbank can see the option to delete and edit their own post.
 
+The inspiration of my idea comes from the time I was working at Citizen Advice Bureau as a Social Welfare Advisor where I often found people coming to us for information to go to their nearest food banks.
+
 ###  Libraries/Applications used:
 
 1) Mongo /Mongoose
@@ -60,16 +62,16 @@ I was having some problem rendering the show.ejs and index.ejs in views. At firs
 `<p><%=  foodbank.email   %></p>`
 `<p><%=  foodbank.website %></p>` 
 
-This led me to check the syntax first. After checking all the syntaxs were correct. I installed MongoCampus to check my database. I noticed there were two databases. I went back to my code and check the name of the database  in index.js and db/seeds.js. I found out that there is a typo in one of the name which resulted in creating two databases. After correcting the spelling mistake the 
+This led me to check the syntax first. After checking all the syntaxs were correct. I installed MongoCampus to check my database. I noticed there were two databases. I went back to my code and check the name of the database  in index.js and db/seeds.js. I found out that there is a typo in one of the name which resulted in creating two databases. After correcting the spelling mistake the problem was resolved. 
 
 ### Feature backlog:
-If I have more time I would like to work more on the user experience side of the website. There are a few changes I would like to implement.
-
-I would like to add google Map API so it can display all the local food banks nearby, and adding a search bar so user can find local foodbanks by typing in their post code. 
+If I have more time I would like to work more on the user experience side of the website. Another would be to add google Map API so it can display all the local food banks nearby, and adding a search bar so user can find local foodbanks by typing in their post code. 
 
 ### Final thoughts:
 
 Overall I am very happy with this project. I only had 5 days to learn all the technologies required to build a full-stack RESTful application, I was able to apply everything I have learnt very quicky. 
+
+ Throughout this project, I have found effective ways to learn new technologies and become better at following documentations online. Now graduated I feel more confidence in keeping up to date and learning new technologies.
 
 
 
